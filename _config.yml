@@ -1,0 +1,41 @@
+baseurl: "" # The subpath of your site. Use "" if you're hosting a blog at the root level.
+url: "alfredoxperez.github.io" # the base hostname & protocol for your site.
+title: "alfredo's blog"
+
+
+paginate: 3 #articles per page
+paginate_path: page:num #/blog/page:num #makes pagination working
+
+
+#contacts
+git: "https://github.com/alfredoxperez/"  #Add your github url here.
+stackoverflow: ""   #Add your stackoverflow url here.
+twitter: ""         #Add your twitter url here.
+
+
+gems:
+  - jekyll-sitemap
+
+
+
+exclude:
+  - "README.md"
+  - "CHANGELOG.md"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - ".DS_Store"
+  - ".gitignore"
+permalink: :title
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
