@@ -10,7 +10,7 @@ Creating the page on github is extremely simple so I'll skip that and focus on J
 
 [Jekyll](http://jekyllrb.com/) is a blog-aware, static site generator.  Great! But what does that mean?  In part it means that once you've created the site all you need to do is write a blog post with some YAML Front Matter tags, preview locally, and upload it to the "_posts" directory. Jekyll can take care of the formatting, headers, footers, and links!
 
-I did run into some issues with getting [Jekyll installed](https://help.github.com/articles/using-jekyll-with-pages) by running "bundle install" on Mac OS X (10.10).  The error message was:
+I did run into some issues with getting [Jekyll installed](https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/) by running "bundle install" on Mac OS X (10.10).  The error message was:
 
 ~~~bash
 An error occurred while installing RedCloth (4.2.9), and Bundler cannot continue.

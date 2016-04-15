@@ -123,5 +123,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  github-pages (= 32)
+  github-pages
   json
+
+BUNDLED WITH
+   1.11.2

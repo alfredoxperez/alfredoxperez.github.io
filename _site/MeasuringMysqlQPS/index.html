@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="/public/stylesheets/styles.css">
     <link rel="stylesheet" href="/public/stylesheets/pygment_trac.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> 
-    <link rel="canonical" href="alfredoxperez.github.io/">
+    <link rel="canonical" href="alfredoxperez.github.io/MeasuringMysqlQPS">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
       <link rel="icon" type="image/x-icon"  href="/favicon.ico" />
-    <title>blog | alfredo's blog</title>
+    <title>Measuring MySQL Queries Per Second through 'mysqladmin status' | alfredo's blog</title>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -52,63 +52,67 @@
 
 
       
-          
-<div class="post-content-box">
-<div class="post-header-home">
-  <h1>
-    <a href="/ScalaMultiMatchPatternMatching">Scala MultiMatch Pattern Matching</a>
-  </h1>
-  <p class="text-post-info">15 Apr 2016 | <i class="fa fa-comment"></i> <a class="text-post-info" href="/ScalaMultiMatchPatternMatching/#disqus_thread"></a>  </p>
+          <div class="post-content-box">
+<div class="post-title">
+    <h1>Measuring MySQL Queries Per Second through 'mysqladmin status'</h1>
+    <p class="text-muted">09 Apr 2015 </p>
 
 </div>
-<div class="post-excerpt-home">
-  <h5 id="pattern-matching-on-multiple-case-statements-in-scala">Pattern Matching on Multiple case statements in Scala.</h5>
-<p>The original function and author can be found <a href="http://stackoverflow.com/questions/6720205/idiomatic-way-to-convert-a-seqb">here</a>. It is defined as:</p>
 
-
-  <p class="text-left"><a href="/ScalaMultiMatchPatternMatching">Continue Reading &rarr;</a></p>
-</div>
-</div>
-<hr/>
-
-<div class="post-content-box">
-<div class="post-header-home">
-  <h1>
-    <a href="/MeasuringMysqlQPS">Measuring MySQL Queries Per Second through 'mysqladmin status'</a>
-  </h1>
-  <p class="text-post-info">09 Apr 2015 | <i class="fa fa-comment"></i> <a class="text-post-info" href="/MeasuringMysqlQPS/#disqus_thread"></a>  </p>
-
-</div>
-<div class="post-excerpt-home">
   <p>The status command for <a href="http://dev.mysql.com/doc/refman/5.6/en/mysqladmin.html">mysqladmin</a> is a good way to see the qps in mysql but there are some pitfalls to be aware of…</p>
 
+<p>I can easily run the command to get the qps along with some other data points:  </p>
 
-  <p class="text-left"><a href="/MeasuringMysqlQPS">Continue Reading &rarr;</a></p>
+<p><code>mysqladmin -u user -p status</code>  </p>
+
+<p>The output of this command looks like:  </p>
+
+<p><code>Uptime: 522  Threads: 5  Questions: 373562  Slow queries: 344  Opens: 73  Flush tables: 1  Open tables: 66  Queries per second avg: 715.636</code>  </p>
+
+<p>… and I get an average QPS! Nice, but what does average QPS mean?  Is the average taken from a rolling window or for all time? The answer is in the output and it’s since mysql has been up.  For example; we can take the number of “Questions”, which is the count of queries to mysql, and divide it by the “Uptime” to get the avg QPS shown: </p>
+
+<p><code>373562 / 522 = 715.6360153256705</code></p>
+
+<p>That’s not so nice.  This can be a good way to measure the qps if my application is constantly running, but if it has downtime or if it runs only at certain times then the value really isn’t accurate.  What’s more is that the “flush-status” command does not flush the “Uptime” and “Questions” values so the only way to reset those values is to restart mysql.</p>
+
+<p>Despite the caveats of this functionality it can be very helpful to track and diagnose performance in a testing environment where restarting mysql is possible for test runs.</p>
+
+<p>Environment used:</p>
+
+<ul>
+  <li>Mac OS X 10.10.2</li>
+  <li>Java 1.7.0_80-ea</li>
+  <li>MySQL 5.6.20</li>
+</ul>
+
+
 </div>
+
+
+<div class="comments">
+   <div id="disqus_thread"></div>
+ <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'alfredossoftwareblog'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
 </div>
-<hr/>
 
-<div class="post-content-box">
-<div class="post-header-home">
-  <h1>
-    <a href="/BloggingWithJeykllOnGithubUserPages">Blogging with Jekyll on Github User Pages</a>
-  </h1>
-  <p class="text-post-info">02 Feb 2015 | <i class="fa fa-comment"></i> <a class="text-post-info" href="/BloggingWithJeykllOnGithubUserPages/#disqus_thread"></a>  </p>
 
+<br/>
+<div class="post-footer">
+  
 </div>
-<div class="post-excerpt-home">
-  <p>There are many options out there to create a blog but github.com was an obvious choice.  I use it both at work and home and am pretty happy with it. Github also has <a href="https://pages.github.com/">user “Pages”</a> that allow you to create a blog using Jekyll.</p>
 
-
-  <p class="text-left"><a href="/BloggingWithJeykllOnGithubUserPages">Continue Reading &rarr;</a></p>
-</div>
-</div>
-<hr/>
-
-
-<div class="paginate" >
-
-</div>
+       
 
  
 
